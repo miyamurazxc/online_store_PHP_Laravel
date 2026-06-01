@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Filament\Resources\OrderResource\Pages;
+
+use Filament\Pages\Actions;
+use App\Filament\Resources\OrderResource;
+use Filament\Resources\Pages\ListRecords;
+use AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction;
+
+class ListOrders extends ListRecords
+{
+    protected static string $resource = OrderResource::class;
+
+    protected function getTitle(): string
+    {
+        return 'Список заказов';
+    }
+
+    protected function getActions(): array
+    {
+        return [
+            Actions\CreateAction::make()->label('Создать заказ'),
+        ];
+    }
+
+    protected function getTableBulkActions(): array
+    {
+        return [
+            FilamentExportBulkAction::make('export')->label('Экспорт'),
+        ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+}
