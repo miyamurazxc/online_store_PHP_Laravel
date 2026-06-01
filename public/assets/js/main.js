@@ -345,11 +345,24 @@
     var sliderrange = $('#slider-range');
     var amountprice = $('#amount');
     $(function() {
+        var minPrice = 100;
+        var maxPrice = 100000;
+        var rangeParam = new URLSearchParams(window.location.search).get('range');
+
+        if (rangeParam) {
+            var selectedPrices = rangeParam.match(/\d+/g);
+
+            if (selectedPrices && selectedPrices.length >= 2) {
+                minPrice = parseInt(selectedPrices[0], 10);
+                maxPrice = parseInt(selectedPrices[1], 10);
+            }
+        }
+
         sliderrange.slider({
             range: true,
             min: 100,
             max: 100000,
-            values: [100, 100000],
+            values: [minPrice, maxPrice],
             slide: function(event, ui) {
                 amountprice.val("₸" + ui.values[0] + " - ₸" + ui.values[1]);
             }
@@ -661,4 +674,3 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 })(jQuery);
-

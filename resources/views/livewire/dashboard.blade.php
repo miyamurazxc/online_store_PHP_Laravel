@@ -46,7 +46,7 @@
                                 </td>
                                 <td class="py-2">
                                     {{-- Ссылки на просмотр счёта и скачивание PDF --}}
-                                    <a href="{{ route('invoice.view', $order) }}" class="text-blue-600 hover:underline">
+                                    <a href="{{ route('invoice', $order) }}" class="text-blue-600 hover:underline">
                                         Просмотр счёта
                                     </a>
                                     |
@@ -72,4 +72,3 @@
         @endif
     </div>
 </x-app-layout>
-

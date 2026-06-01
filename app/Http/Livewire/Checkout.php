@@ -78,22 +78,25 @@ class Checkout extends Component
             }
 
             $order = Order::where('session_id', $session->id)->first();
-            $customer = \Stripe\Customer::retrieve($session->customer);
+            $customer = Auth::user();
 
             if ($order->status === 'pending') {
                 $order->status = 'processing'; // в обработке
                 $order->save();
             }
 
-            Mail::to($order->user->email)->send(new OrderReceived($order, $invoiceService->createInvoice($order)));
+            try {
+                Mail::to($order->user->email)->send(new OrderReceived($order, $invoiceService->createInvoice($order)));
+            } catch (\Exception $mailException) {
+                report($mailException);
+            }
+            
             Cart::destroy();
-
-            // Возвращает view об успешной оплате
+            
             return view('livewire.success', compact('customer'));
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-            throw new NotFoundHttpException();
-        }
+            } catch (\Exception $e) {
+                dd($e->getMessage(), $e->getFile(), $e->getLine());
+            }
 
         return redirect()->route('home');
     }

@@ -6,8 +6,8 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="widget-about font-md mb-md-5 mb-lg-0">
                         <div class="logo logo-width-1 wow fadeIn animated">
-                            <a href="index.html">
-                            <img src="{{ asset('assets/imgs/logo/logo.png') }}" alt="логотип">
+                            <a href="{{ route('home') }}">
+                            <img src="{{ asset('vendor/invoices/fazeshop-logo.png') }}" alt="логотип">
                             </a>
                         </div>
                         <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Контакты</h5>
@@ -35,8 +35,8 @@
                 <div class="col-lg-2  col-md-3">
                     <h5 class="widget-title wow fadeIn animated">Мой аккаунт</h5>
                     <ul class="footer-list wow fadeIn animated">
-                        <li><a href="my-account.html">Личный кабинет</a></li>
-                        <li><a href="#">Корзина</a></li>
+                        <li><a href="{{ route('dashboard') }}">Личный кабинет</a></li>
+                        <li><a href="{{ route('cart') }}">Корзина</a></li>
                         <li><a href="#">Отследить заказ</a></li>
                         <li><a href="#">История заказов</a></li>
                     </ul>

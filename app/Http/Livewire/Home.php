@@ -23,7 +23,7 @@ class Home extends Component
         }
 
         if ($priceFilter) {
-            preg_match('/\$(\d+)\s+-\s+\$(\d+)/', $priceFilter, $matches);
+            preg_match('/(\d+)\s*-\s*\D*(\d+)/', $priceFilter, $matches);
 
             if (count($matches) == 3) {
                 $minPrice = $matches[1];
